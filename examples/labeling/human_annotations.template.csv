@@ -1,0 +1,7 @@
+capture_id,question_key,option_key,reviewer_1_id,reviewer_1_label,reviewer_2_id,reviewer_2_label,adjudicator_id,label,label_status,evidence_notice
+placeholder-scan-001,q1,A,placeholder-reviewer-a,empty,placeholder-reviewer-b,empty,,empty,verified,SYNTHETIC_FORMAT_ONLY_NOT_PRODUCTION_EVIDENCE
+placeholder-scan-002,q2,B,placeholder-reviewer-a,filled,placeholder-reviewer-b,filled,,filled,verified,SYNTHETIC_FORMAT_ONLY_NOT_PRODUCTION_EVIDENCE
+placeholder-scan-003,q3,C,placeholder-reviewer-a,partial,placeholder-reviewer-b,crossed,placeholder-adjudicator-c,partial,adjudicated,SYNTHETIC_FORMAT_ONLY_NOT_PRODUCTION_EVIDENCE
+placeholder-mobile-001,q4,D,placeholder-reviewer-a,crossed,placeholder-reviewer-b,crossed,,crossed,verified,SYNTHETIC_FORMAT_ONLY_NOT_PRODUCTION_EVIDENCE
+placeholder-mobile-002,q5,A,placeholder-reviewer-a,erased,placeholder-reviewer-b,empty,placeholder-adjudicator-c,erased,adjudicated,SYNTHETIC_FORMAT_ONLY_NOT_PRODUCTION_EVIDENCE
+placeholder-mobile-003,q6,B,placeholder-reviewer-a,multiple,placeholder-reviewer-b,multiple,,multiple,verified,SYNTHETIC_FORMAT_ONLY_NOT_PRODUCTION_EVIDENCE

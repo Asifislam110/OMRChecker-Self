@@ -1,0 +1,7 @@
+-r requirements.txt
+
+# The contrib build supplies cv2.aruco; headless avoids server GUI libraries.
+opencv-contrib-python-headless>=4.8,<5
+fastapi>=0.100,<1
+python-multipart>=0.0.6,<1
+uvicorn>=0.23,<1

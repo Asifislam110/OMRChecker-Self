@@ -1,0 +1,10 @@
+{
+  "_notice": "SYNTHETIC FORMAT-ONLY PLACEHOLDER; NOT PRODUCTION ACCURACY EVIDENCE",
+  "schema_version": "omr-capture-metadata-v1",
+  "capture_id": "placeholder-scan-001",
+  "physical_sheet_id": "placeholder-sheet-001",
+  "capture_session_id": "placeholder-session-scan-a",
+  "device_id": "placeholder-scanner-a",
+  "print_batch_id": "placeholder-batch-a",
+  "capture_mode": "scanner"
+}

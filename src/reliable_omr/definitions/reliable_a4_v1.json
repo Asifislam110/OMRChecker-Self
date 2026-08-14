@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "definition_id": "papercreator-a4-100q-v1",
+  "page": {
+    "size": "A4",
+    "width_mm": 210,
+    "height_mm": 297,
+    "canonical_dpi": 300,
+    "canonical_width_px": 2480,
+    "canonical_height_px": 3508
+  },
+  "aruco": {
+    "dictionary": "DICT_4X4_50",
+    "markers": [
+      {
+        "id": 0,
+        "role": "top_left",
+        "top_left_mm": [8, 8],
+        "size_mm": 12
+      },
+      {
+        "id": 1,
+        "role": "top_right",
+        "top_left_mm": [190, 8],
+        "size_mm": 12
+      },
+      {
+        "id": 2,
+        "role": "bottom_right",
+        "top_left_mm": [190, 277],
+        "size_mm": 12
+      },
+      {
+        "id": 3,
+        "role": "bottom_left",
+        "top_left_mm": [8, 277],
+        "size_mm": 12
+      }
+    ]
+  },
+  "qr": {
+    "top_left_mm": [151, 25],
+    "size_mm": 35,
+    "encoding": "json",
+    "prefix": "O1:",
+    "payload_fields": [
+      {
+        "name": "exam_id",
+        "type": "string",
+        "required": true,
+        "max_length": 13
+      },
+      {
+        "name": "template_version",
+        "type": "string",
+        "required": true,
+        "max_length": 6
+      },
+      {
+        "name": "template_checksum",
+        "type": "string",
+        "required": true,
+        "max_length": 8
+      }
+    ]
+  },
+  "answer_blocks": [
+    {
+      "first_question": 1,
+      "question_count": 25,
+      "options": ["A", "B", "C", "D"],
+      "first_center_mm": [25, 94],
+      "option_pitch_mm": 7,
+      "question_pitch_mm": 7,
+      "bubble_diameter_mm": 5
+    },
+    {
+      "first_question": 26,
+      "question_count": 25,
+      "options": ["A", "B", "C", "D"],
+      "first_center_mm": [75, 94],
+      "option_pitch_mm": 7,
+      "question_pitch_mm": 7,
+      "bubble_diameter_mm": 5
+    },
+    {
+      "first_question": 51,
+      "question_count": 25,
+      "options": ["A", "B", "C", "D"],
+      "first_center_mm": [125, 94],
+      "option_pitch_mm": 7,
+      "question_pitch_mm": 7,
+      "bubble_diameter_mm": 5
+    },
+    {
+      "first_question": 76,
+      "question_count": 25,
+      "options": ["A", "B", "C", "D"],
+      "first_center_mm": [175, 94],
+      "option_pitch_mm": 7,
+      "question_pitch_mm": 7,
+      "bubble_diameter_mm": 5
+    }
+  ],
+  "roll_number": {
+    "columns": 8,
+    "digits": 10,
+    "first_center_mm": [38, 27],
+    "column_pitch_mm": 8,
+    "digit_pitch_mm": 5,
+    "bubble_diameter_mm": 4
+  },
+  "quality": {
+    "min_short_edge_px": {
+      "scanner": 1600,
+      "mobile": 1000
+    },
+    "min_blur_variance": {
+      "scanner": 80,
+      "mobile": 45
+    },
+    "max_glare_fraction": 0.12,
+    "glare_threshold": 250,
+    "required_markers": 4,
+    "max_reprojection_error_px": 6
+  },
+  "classification": {
+    "inner_radius_ratio": 0.58,
+    "ring_inner_ratio": 0.72,
+    "ring_outer_ratio": 1.1,
+    "background_inner_ratio": 1.2,
+    "background_outer_ratio": 1.65,
+    "empty_score_max": 0.09,
+    "filled_score_min": 0.2,
+    "multiple_score_min": 0.16,
+    "min_top_margin": 0.08,
+    "accept_risk_max": 0.18
+  }
+}

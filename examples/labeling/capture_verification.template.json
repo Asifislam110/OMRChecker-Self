@@ -1,0 +1,11 @@
+{
+  "_notice": "SYNTHETIC FORMAT-ONLY PLACEHOLDER; NOT PRODUCTION ACCURACY EVIDENCE",
+  "schema_version": "omr-capture-verification-v1",
+  "reviewer_1_id": "placeholder-reviewer-a",
+  "reviewer_1_is_error": 0,
+  "reviewer_2_id": "placeholder-reviewer-b",
+  "reviewer_2_is_error": 0,
+  "adjudicator_id": "",
+  "is_error": 0,
+  "label_status": "verified"
+}

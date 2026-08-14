@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://papercreator.local/schemas/reliable-omr-sheet-definition-v1.json",
+  "title": "Reliable OMR sheet definition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "definition_id",
+    "page",
+    "aruco",
+    "qr",
+    "answer_blocks",
+    "roll_number",
+    "quality",
+    "classification"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "definition_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._-]{1,80}$"
+    },
+    "page": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "size",
+        "width_mm",
+        "height_mm",
+        "canonical_dpi",
+        "canonical_width_px",
+        "canonical_height_px"
+      ],
+      "properties": {
+        "size": {"const": "A4"},
+        "width_mm": {"const": 210},
+        "height_mm": {"const": 297},
+        "canonical_dpi": {"type": "integer", "minimum": 150, "maximum": 600},
+        "canonical_width_px": {"type": "integer", "minimum": 1000},
+        "canonical_height_px": {"type": "integer", "minimum": 1400}
+      }
+    },
+    "aruco": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dictionary", "markers"],
+      "properties": {
+        "dictionary": {
+          "type": "string",
+          "pattern": "^DICT_[4567]X[4567]_[0-9]+$"
+        },
+        "markers": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {"$ref": "#/$defs/marker"}
+        }
+      }
+    },
+    "qr": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["top_left_mm", "size_mm", "encoding", "prefix", "payload_fields"],
+      "properties": {
+        "top_left_mm": {"$ref": "#/$defs/point"},
+        "size_mm": {"type": "number", "exclusiveMinimum": 0},
+        "encoding": {"enum": ["json", "base64url_profile"]},
+        "prefix": {"enum": ["O1:", "O2:"]},
+        "payload_fields": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/payload_field"}
+        }
+      }
+    },
+    "answer_blocks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/answer_block"}
+    },
+    "roll_number": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "columns",
+        "digits",
+        "first_center_mm",
+        "column_pitch_mm",
+        "digit_pitch_mm",
+        "bubble_diameter_mm"
+      ],
+      "properties": {
+        "columns": {"type": "integer", "minimum": 1, "maximum": 20},
+        "digits": {"type": "integer", "minimum": 2, "maximum": 16},
+        "first_center_mm": {"$ref": "#/$defs/point"},
+        "column_pitch_mm": {"type": "number", "exclusiveMinimum": 0},
+        "digit_pitch_mm": {"type": "number", "exclusiveMinimum": 0},
+        "bubble_diameter_mm": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min_short_edge_px",
+        "min_blur_variance",
+        "max_glare_fraction",
+        "glare_threshold",
+        "required_markers",
+        "max_reprojection_error_px"
+      ],
+      "properties": {
+        "min_short_edge_px": {"$ref": "#/$defs/mode_number"},
+        "min_blur_variance": {"$ref": "#/$defs/mode_number"},
+        "max_glare_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+        "glare_threshold": {"type": "integer", "minimum": 200, "maximum": 255},
+        "required_markers": {"const": 4},
+        "max_reprojection_error_px": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "inner_radius_ratio",
+        "ring_inner_ratio",
+        "ring_outer_ratio",
+        "background_inner_ratio",
+        "background_outer_ratio",
+        "empty_score_max",
+        "filled_score_min",
+        "multiple_score_min",
+        "min_top_margin",
+        "accept_risk_max"
+      ],
+      "properties": {
+        "inner_radius_ratio": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "ring_inner_ratio": {"type": "number", "exclusiveMinimum": 0},
+        "ring_outer_ratio": {"type": "number", "exclusiveMinimum": 0},
+        "background_inner_ratio": {"type": "number", "exclusiveMinimum": 0},
+        "background_outer_ratio": {"type": "number", "exclusiveMinimum": 0},
+        "empty_score_max": {"type": "number", "minimum": 0, "maximum": 1},
+        "filled_score_min": {"type": "number", "minimum": 0, "maximum": 1},
+        "multiple_score_min": {"type": "number", "minimum": 0, "maximum": 1},
+        "min_top_margin": {"type": "number", "minimum": 0, "maximum": 1},
+        "accept_risk_max": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    }
+  },
+  "$defs": {
+    "point": {
+      "type": "array",
+      "prefixItems": [
+        {"type": "number", "minimum": 0},
+        {"type": "number", "minimum": 0}
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "marker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "role", "top_left_mm", "size_mm"],
+      "properties": {
+        "id": {"type": "integer", "minimum": 0},
+        "role": {"enum": ["top_left", "top_right", "bottom_right", "bottom_left"]},
+        "top_left_mm": {"$ref": "#/$defs/point"},
+        "size_mm": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "payload_field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "type", "required"],
+      "properties": {
+        "name": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]{0,39}$"},
+        "type": {"enum": ["string", "integer"]},
+        "required": {"type": "boolean"},
+        "min_length": {"type": "integer", "minimum": 1, "maximum": 512},
+        "max_length": {"type": "integer", "minimum": 1, "maximum": 512}
+      }
+    },
+    "answer_block": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "first_question",
+        "question_count",
+        "options",
+        "first_center_mm",
+        "option_pitch_mm",
+        "question_pitch_mm",
+        "bubble_diameter_mm"
+      ],
+      "properties": {
+        "first_question": {"type": "integer", "minimum": 1},
+        "question_count": {"type": "integer", "minimum": 1},
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 10,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1, "maxLength": 4}
+        },
+        "first_center_mm": {"$ref": "#/$defs/point"},
+        "option_pitch_mm": {"type": "number", "exclusiveMinimum": 0},
+        "question_pitch_mm": {"type": "number", "exclusiveMinimum": 0},
+        "bubble_diameter_mm": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "mode_number": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scanner", "mobile"],
+      "properties": {
+        "scanner": {"type": "number", "minimum": 0},
+        "mobile": {"type": "number", "minimum": 0}
+      }
+    }
+  }
+}

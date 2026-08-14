@@ -1,0 +1,4 @@
+-r requirements.service.txt
+
+# Optional offline benchmark dependency; not required by the OMR service.
+scikit-learn
